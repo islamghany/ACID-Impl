@@ -27,9 +27,14 @@ db/migrarions/up:
 	@echo 'Running up migrarions...'
 	migrate -path ./db/migrations -database ${DB_DSN} up
 
-## db/migrations/up: apply all up database migrations
+## db/migrations/down: apply all up database down migrations
 .PHONY: db/migrations/down
 db/migrarions/down:
 	@echo 'Running down migrarions...'
 	migrate -path ./db/migrations -database ${DB_DSN} down
+
+## db/sqlc/generate: build all queries
+.PHONY: db/sqlc/generate
+db/sqlc/generate:
+	sqlc generate
 
