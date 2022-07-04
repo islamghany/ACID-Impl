@@ -23,14 +23,14 @@ db/postgres/dropdb:
 
 ## db/migrations/up: apply all up database migrations
 .PHONY: db/migrations/up
-db/migrarions/up:
-	@echo 'Running up migrarions...'
+db/migrations/up:
+	@echo 'Running up migrations...'
 	migrate -path ./db/migrations -database ${DB_DSN} up
 
 ## db/migrations/down: apply all up database down migrations
 .PHONY: db/migrations/down
-db/migrarions/down:
-	@echo 'Running down migrarions...'
+db/migrations/down:
+	@echo 'Running down migrations...'
 	migrate -path ./db/migrations -database ${DB_DSN} down
 
 ## db/sqlc/generate: build all queries
