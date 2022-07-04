@@ -33,8 +33,20 @@ db/migrations/down:
 	@echo 'Running down migrations...'
 	migrate -path ./db/migrations -database ${DB_DSN} down
 
+## db/migrations/new name=$1: create a new database migration
+.PHONY: db/migrations/new
+db/migrations/new:
+	@echo 'Creating migration files for ${name}...'
+	migrate create -seq -ext=.sql -dir=./migrations ${name}
+
+
 ## db/sqlc/generate: build all queries
 .PHONY: db/sqlc/generate
 db/sqlc/generate:
 	sqlc generate
 
+
+## test :  run all unit test in the app
+.PHONY: test
+test:
+	CGO_ENABLED=0 go test -v -cover ./...
