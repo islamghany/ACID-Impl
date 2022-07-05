@@ -9,8 +9,10 @@ INSERT INTO accounts (
 
 
 -- name: GetAccount :one
-SELECT * from accounts where id = $1;
+SELECT * from accounts where id = $1 LIMIT 1;
 
+-- name: GetAccoutForUpdate :one
+SELECT * FROM accounts WHERE id = $1 lIMIT 1 FOR No key UPDATE;
 
 -- name: GetAccounts :many
 SELECT * FROM accounts LIMIT $1 OFFSET $2;

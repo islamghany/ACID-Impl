@@ -48,7 +48,7 @@ func (q *Queries) DeleteAccount(ctx context.Context, id int64) error {
 }
 
 const getAccount = `-- name: GetAccount :one
-SELECT id, owner, balance, currency, created_at from accounts where id = $1
+SELECT id, owner, balance, currency, created_at from accounts where id = $1 LIMIT 1
 `
 
 func (q *Queries) GetAccount(ctx context.Context, id int64) (Account, error) {
@@ -100,6 +100,23 @@ func (q *Queries) GetAccounts(ctx context.Context, arg GetAccountsParams) ([]Acc
 		return nil, err
 	}
 	return items, nil
+}
+
+const getAccoutForUpdate = `-- name: GetAccoutForUpdate :one
+SELECT id, owner, balance, currency, created_at FROM accounts WHERE id = $1 lIMIT 1 FOR No key UPDATE
+`
+
+func (q *Queries) GetAccoutForUpdate(ctx context.Context, id int64) (Account, error) {
+	row := q.db.QueryRowContext(ctx, getAccoutForUpdate, id)
+	var i Account
+	err := row.Scan(
+		&i.ID,
+		&i.Owner,
+		&i.Balance,
+		&i.Currency,
+		&i.CreatedAt,
+	)
+	return i, err
 }
 
 const updateAccount = `-- name: UpdateAccount :one
