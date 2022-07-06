@@ -46,6 +46,10 @@ db/sqlc/generate:
 	sqlc generate
 
 
+## server : run the api
+.PHONY: server
+server:
+	go run ./main.go
 ## test :  run all unit test in the app
 .PHONY: test
 test:
