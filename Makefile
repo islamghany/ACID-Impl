@@ -50,6 +50,11 @@ db/sqlc/generate:
 .PHONY: server
 server:
 	go run ./main.go
+
+## server : run mockgen
+.PHONY: mock
+mock:
+	mockgen --package mockdb --destination /db/mock/store.go github/islmaghany/bank/db/sqlc Store	
 ## test :  run all unit test in the app
 .PHONY: test
 test:

@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"database/sql"
+	"github/islmaghany/bank/api"
+	db "github/islmaghany/bank/db/sqlc"
+	"github/islmaghany/bank/util"
 	"log"
-	"simple-bank/api"
-	db "simple-bank/db/sqlc"
-	"simple-bank/util"
 
 	_ "github.com/lib/pq"
 )

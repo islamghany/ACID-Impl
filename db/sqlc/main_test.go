@@ -3,9 +3,9 @@ package db
 import (
 	"context"
 	"database/sql"
+	"github/islmaghany/bank/util"
 	"log"
 	"os"
-	"simple-bank/util"
 	"testing"
 
 	_ "github.com/lib/pq"

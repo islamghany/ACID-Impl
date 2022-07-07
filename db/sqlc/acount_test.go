@@ -3,7 +3,8 @@ package db
 import (
 	"context"
 	"database/sql"
-	"simple-bank/util"
+	"github/islmaghany/bank/util"
+
 	"testing"
 	"time"
 
