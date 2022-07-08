@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Jul  7 10:35:30 2022
+# Make data base, printed on Fri Jul  8 19:57:59 2022
 
 # Variables
 
@@ -75,7 +75,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 MANAGERPID = 1806
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c4312785-37e6-4eda-bc7b-0934f8b32640.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-99955dca-8972-47c3-b2ce-74cf1064e9c7.sock
 # environment
 LC_NAME = en_US.UTF-8
 # environment
@@ -85,7 +85,7 @@ GOPROXY = https://proxy.golang.org,direct
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/islamghany/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /home/islamghany/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/islamghany/go/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
@@ -117,7 +117,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6120
+GIO_LAUNCHED_DESKTOP_FILE_PID = 200107
 # automatic
 %F = $(notdir $%)
 # environment
@@ -209,7 +209,6 @@ NVM_DIR = /home/islamghany/.nvm
 # environment
 GDK_BACKEND = x11
 # environment
- 
 LC_PAPER = en_US.UTF-8
 # environment
 QT_ACCESSIBILITY = 1
@@ -246,7 +245,7 @@ LC_ADDRESS = en_US.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6120
+VSCODE_PID = 200107
 # environment
 NVM_RC_VERSION = 
 # variable set hash-table stats:
@@ -284,13 +283,13 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
- 
-.PHONY: db/postgres/run db/postgres/createdb db/postgres/dropdb db/migrations/up db/migrations/down db/migrations/new db/sqlc/generate server test
+.PHONY: db/postgres/run db/postgres/createdb db/postgres/dropdb db/migrations/up db/migrations/down db/migrations/new db/sqlc/generate server mock test
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 db/migrations/new:
+ 
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
@@ -307,7 +306,6 @@ db/postgres/run:
 #  recipe to execute (from 'Makefile', line 7):
 	@docker run --name bank -p 5431:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
 
- 
 db/sqlc/generate:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
@@ -319,7 +317,7 @@ db/sqlc/generate:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-06 14:15:21.401519883
+#  Last modified 2022-07-07 11:23:12.476813364
 #  File has been updated.
 #  Successfully updated.
 
@@ -336,7 +334,7 @@ test:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 56):
+#  recipe to execute (from 'Makefile', line 61):
 	CGO_ENABLED=0 go test -v -cover ./...
 
 # Not a target:
@@ -372,20 +370,28 @@ db/postgres/dropdb:
 	@echo 'Droping the bank database'
 	@docker exec -it bank dropdb bank
 
+mock:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 57):
+	mockgen --package mockdb --destination /db/mock/store.go github/islmaghany/bank/db/sqlc Store	
+
 # files hash-table stats:
-# Load=14/1024=1%, Rehash=0, Collisions=0/50=0%
+# Load=15/1024=1%, Rehash=0, Collisions=0/54=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 288 B / avg = 9 B
-# current buf: size = 8162 B / used = 288 B / count = 29 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 30 / storage = 293 B / avg = 9 B
+# current buf: size = 8162 B / used = 293 B / count = 30 / avg = 9 B
 
-# strcache performance: lookups = 68 / hit rate = 57%
+# strcache performance: lookups = 73 / hit rate = 58%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=1/68=1%
-# Finished Make data base on Thu Jul  7 10:35:30 2022
+# Load=30/8192=0%, Rehash=0, Collisions=1/73=1%
+# Finished Make data base on Fri Jul  8 19:57:59 2022
 
  
